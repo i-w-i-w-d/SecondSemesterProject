@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox #Потім для таблички рекордів
 
 class TheGame:
     def __init__(self, title = "Меню", width = 300, height = 150):
