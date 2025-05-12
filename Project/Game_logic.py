@@ -1,0 +1,91 @@
+import tkinter as tk
+import random
+from tkinter import messagebox
+
+class GameLogic:
+    def __init__(self, master, size, on_back=None):
+        self.master = master
+        self.size = size
+        self.on_back = on_back
+        self.buttons = []
+        self.first = None
+        self.second = None
+        self.locked = False
+        self.matches_found = 0
+        self.total_pairs = (size * size) // 2
+        self.symbols = self.generate_symbols()
+        self.create_ui()
+
+    def generate_symbols(self):
+        symbols = list("ABCDEFGHIJKLMNÑOPQRSTUVWXYZ")  # Поки просто символи
+        needed = self.total_pairs
+        chosen = random.sample(symbols, needed)
+        grid_symbols = chosen * 2
+        random.shuffle(grid_symbols)
+        return grid_symbols
+
+    def create_ui(self):
+        self.frame = tk.Frame(self.master)
+        self.frame.pack()
+
+        for i in range(self.size):
+            row = []
+            for j in range(self.size):
+                index = i * self.size + j
+                btn = tk.Button(
+                    self.frame,
+                    text="",
+                    width=6,
+                    height=3,
+                    command=lambda idx=index: self.reveal(idx)
+                )
+                btn.grid(row=i, column=j, padx=2, pady=2)
+                row.append(btn)
+            self.buttons.append(row)
+
+        tk.Button(
+            self.master,
+            text="Назад",
+            command=self.back
+        ).pack(pady=10)
+
+    def reveal(self, index):  # Повинно блокувати спам натискання кнопок але шось не хоче
+        if self.locked:
+            return
+
+        row, col = divmod(index, self.size)
+        btn = self.buttons[row][col]
+
+        if btn["text"] != "":
+            return  # повторне натискання відкритої кнопки нічо не ламатиме
+
+        symbol = self.symbols[index]
+        btn.config(text=symbol)
+
+        if self.first is None:
+            self.first = (index, btn)
+        elif self.second is None:
+            self.second = (index, btn)
+            self.master.after(500, self.check_match)
+
+    def check_match(self):
+        idx1, btn1 = self.first
+        idx2, btn2 = self.second
+
+        if self.symbols[idx1] == self.symbols[idx2]:
+            btn1.config(state="disabled")
+            btn2.config(state="disabled")
+            self.matches_found += 1
+            if self.matches_found == self.total_pairs:
+                messagebox.showinfo("Перемога", "Всі пари знайдено!")
+        else:
+            btn1.config(text="")
+            btn2.config(text="")
+
+        self.first = None
+        self.second = None
+
+    def back(self):
+        self.frame.destroy()
+        if self.on_back:
+            self.on_back()

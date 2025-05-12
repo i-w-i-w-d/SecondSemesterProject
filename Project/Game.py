@@ -1,8 +1,9 @@
 import tkinter as tk
 from tkinter import messagebox
+from Game_logic import GameLogic
 
 class TheGame:
-    def __init__(self, title="Меню", width=300, height=200):
+    def __init__(self, title="Меню", width=500, height=400):
         self.window = tk.Tk()
         self.window.title(title)
         self.window.geometry(f'{width}x{height}')
@@ -168,13 +169,19 @@ class TheGame:
         ).pack(pady=20)
 
     def start_easy_level(self):
-        self.show_empty_game_window(self.get_text("easy"))
+        self.clear_window()
+        self.window.title(f"{self.get_text('game_title')} - {self.get_text('easy')}")
+        GameLogic(self.window, size=2, on_back=self.show_game_window)
 
     def start_medium_level(self):
-        self.show_empty_game_window(self.get_text("medium"))
+        self.clear_window()
+        self.window.title(f"{self.get_text('game_title')} - {self.get_text('medium')}")
+        GameLogic(self.window, size=4, on_back=self.show_game_window)
 
     def start_hard_level(self):
-        self.show_empty_game_window(self.get_text("hard"))
+        self.clear_window()
+        self.window.title(f"{self.get_text('game_title')} - {self.get_text('hard')}")
+        GameLogic(self.window, size=6, on_back=self.show_game_window)
 
     def show_empty_game_window(self, level):
         self.clear_window()
