@@ -68,4 +68,4 @@ class GameWindow(BaseWindow):
     def start_hard_level(self):
         self.clear_window()
         self.master.title(f"{self.get_text('game_title')} - {self.get_text('hard')}")
-        GameLogic(self.master, size=8, on_back=self.on_back)
+        GameLogic(self.master, size=6, on_back=self.on_back)
