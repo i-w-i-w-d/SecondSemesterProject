@@ -49,7 +49,7 @@ class GameLogic:
             command=self.back
         ).pack(pady=10)
 
-    def reveal(self, index):  # Повинно блокувати спам натискання кнопок але шось не хоче
+    def reveal(self, index):
         if self.locked:
             return
 
@@ -57,7 +57,7 @@ class GameLogic:
         btn = self.buttons[row][col]
 
         if btn["text"] != "":
-            return  # повторне натискання відкритої кнопки нічо не ламатиме
+            return  # кнопка вже відкрита
 
         symbol = self.symbols[index]
         btn.config(text=symbol)
@@ -66,7 +66,8 @@ class GameLogic:
             self.first = (index, btn)
         elif self.second is None:
             self.second = (index, btn)
-            self.master.after(500, self.check_match)
+            self.locked = True
+            self.master.after(500, self.check_match)  # Через 0.5 сек перевірити
 
     def check_match(self):
         idx1, btn1 = self.first
@@ -84,6 +85,7 @@ class GameLogic:
 
         self.first = None
         self.second = None
+        self.locked = False  # Дозволити натискання після перевірки
 
     def back(self):
         self.frame.destroy()
