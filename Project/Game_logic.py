@@ -13,6 +13,7 @@ class GameLogic:
         self.matches_found = 0
         self.total_pairs = (size * size) // 2
         self.symbols = self.generate_symbols()
+        self.click_count = 0
         self.create_ui()
 
     def generate_symbols(self):
@@ -62,6 +63,7 @@ class GameLogic:
         if btn["text"] != "":
             return  # кнопка вже відкрита
 
+        self.click_count += 1
         symbol = self.symbols[index]
         btn.config(text=symbol)
 
@@ -80,6 +82,7 @@ class GameLogic:
         self.victory_frame.pack()
 
         tk.Label(self.victory_frame, text="Всі пари знайдено!", font=("Arial", 18)).pack(pady=20)
+        tk.Label(self.victory_frame, text=f"Загальна кількість ходів: {int(self.click_count/2)}", font=("Arial", 14)).pack(pady=5) # Можна змінити на к-сть натискань
         tk.Button(self.victory_frame, text="Меню", command=self.back).pack(pady=10)
 
     def check_match(self):
