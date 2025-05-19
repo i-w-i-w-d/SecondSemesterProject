@@ -1,5 +1,6 @@
 import tkinter as tk
 import random
+import time
 
 class GameLogic:
     def __init__(self, master, size, on_back=None):
@@ -14,6 +15,7 @@ class GameLogic:
         self.total_pairs = (size * size) // 2
         self.symbols = self.generate_symbols()
         self.click_count = 0
+        self.timer = time.time()
         self.create_ui()
 
     def generate_symbols(self):
@@ -80,9 +82,10 @@ class GameLogic:
             self.back_button.destroy()
         self.victory_frame = tk.Frame(self.master)
         self.victory_frame.pack()
-
+        current_time = int(time.time() - self.timer)
         tk.Label(self.victory_frame, text="Всі пари знайдено!", font=("Arial", 18)).pack(pady=20)
         tk.Label(self.victory_frame, text=f"Загальна кількість ходів: {int(self.click_count/2)}", font=("Arial", 14)).pack(pady=5) # Можна змінити на к-сть натискань
+        tk.Label(self.victory_frame, text=f"Час проходження: {current_time} с", font=("Arial", 14)).pack(pady=10)
         tk.Button(self.victory_frame, text="Меню", command=self.back).pack(pady=10)
 
     def check_match(self):
