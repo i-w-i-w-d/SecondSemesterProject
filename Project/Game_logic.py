@@ -1,6 +1,5 @@
 import tkinter as tk
 import random
-from tkinter import messagebox
 
 class GameLogic:
     def __init__(self, master, size, on_back=None):
@@ -40,18 +39,18 @@ class GameLogic:
                     width=6,
                     height=3,
                     command=lambda idx=index: self.reveal(idx),
-                    fg = fg_color,
-                    activebackground = bg_color
-                )
+                    fg=fg_color,
+                    activebackground=bg_color)
                 btn.grid(row=i, column=j, padx=2, pady=2)
                 row.append(btn)
             self.buttons.append(row)
 
-        tk.Button(
+        self.back_button = tk.Button(
             self.master,
             text="Назад",
             command=self.back
-        ).pack(pady=10)
+        )
+        self.back_button.pack(pady=10)
 
     def reveal(self, index):
         if self.locked:
@@ -73,6 +72,16 @@ class GameLogic:
             self.locked = True
             self.master.after(500, self.check_match)  # Через 0.5 сек перевірити
 
+    def show_victory_screen(self):
+        self.frame.destroy()
+        if hasattr(self, 'back_button'):  # Знищує кнопку Назад, якщо вона існує
+            self.back_button.destroy()
+        self.victory_frame = tk.Frame(self.master)
+        self.victory_frame.pack()
+
+        tk.Label(self.victory_frame, text="Всі пари знайдено!", font=("Arial", 18)).pack(pady=20)
+        tk.Button(self.victory_frame, text="Меню", command=self.back).pack(pady=10)
+
     def check_match(self):
         idx1, btn1 = self.first
         idx2, btn2 = self.second
@@ -82,7 +91,7 @@ class GameLogic:
             btn2.config(state="disabled")
             self.matches_found += 1
             if self.matches_found == self.total_pairs:
-                messagebox.showinfo("Перемога", "Всі пари знайдено!")
+                self.show_victory_screen()
         else:
             btn1.config(text="")
             btn2.config(text="")
@@ -92,6 +101,12 @@ class GameLogic:
         self.locked = False  # Дозволити натискання після перевірки
 
     def back(self):
-        self.frame.destroy()
+        if hasattr(self, 'frame'):
+            self.frame.destroy()
+        if hasattr(self, 'victory_frame'):
+            self.victory_frame.destroy()
+        if hasattr(self, 'back_button'):
+            self.back_button.destroy()
+
         if self.on_back:
             self.on_back()
