@@ -1,4 +1,4 @@
-import tkinter as tk
+"""import tkinter as tk
 from tkinter import messagebox
 
 class TheGame:
@@ -296,7 +296,7 @@ class TheGame:
     def run(self):
         self.window.mainloop()
 
-"""
+
 Хммм... ну напевно можеш почати вже робити саму гру, її вікно знаходиться в def StartGameWindow(self)... я подивився і там можна
 додати бібліотеку із зображеннями, можемо використати для клітинок, коли вони обертаються, але тоді вони мають бути на комп'ютері,
 тож можна просто додати кольори або цифри
