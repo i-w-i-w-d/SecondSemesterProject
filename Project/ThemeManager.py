@@ -7,13 +7,13 @@ class ThemeManager:
             return {
                 "bg": "white",
                 "fg": "black",
-                "btn_bg": "lightgray",
-                "selectcolor": "lightgray"
+                "btn_bg": "pink",
+                "selectcolor": "white"
             }
         else:
             return {
                 "bg": "gray",
                 "fg": "black",
-                "btn_bg": "gray",
+                "btn_bg": "pink",
                 "selectcolor": "gray"
             }
