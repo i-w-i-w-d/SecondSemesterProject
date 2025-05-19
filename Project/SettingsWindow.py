@@ -37,9 +37,9 @@ class SettingsWindow(BaseWindow):
 
         tk.Radiobutton(
             self.master,
-            text=self.get_text("dark_theme"),
+            text=self.get_text("gray_theme"),
             variable=self.theme_var,
-            value="dark",
+            value="gray",
             command=self.change_theme,
             bg=colors["bg"],
             fg=colors["fg"],

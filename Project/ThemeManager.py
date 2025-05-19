@@ -12,8 +12,8 @@ class ThemeManager:
             }
         else:
             return {
-                "bg": "black",
-                "fg": "white",
+                "bg": "gray",
+                "fg": "black",
                 "btn_bg": "gray",
                 "selectcolor": "gray"
             }
