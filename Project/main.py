@@ -7,7 +7,7 @@ from LeadersWindow import LeadersWindow
 from SettingsWindow import SettingsWindow
 
 class TheGame:
-    def __init__(self, title="Меню", width=500, height=400):
+    def __init__(self, title="Меню", width=550, height=450):
         self.window = tk.Tk()
         self.window.title(title)
         self.window.geometry(f'{width}x{height}')

@@ -7,7 +7,7 @@ class GameLogic:
         self.master = master
         self.size = size
         self.on_back = on_back
-        self.buttons = []
+        self.canvas_items = {}  # індекс -> {"rect": ..., "text": ..., "revealed": ...}
         self.first = None
         self.second = None
         self.locked = False
@@ -16,103 +16,115 @@ class GameLogic:
         self.symbols = self.generate_symbols()
         self.click_count = 0
         self.timer = time.time()
+
+        # Фіксовані параметри
+        self.window_width = 550
+        self.window_height = 450
+        self.cell_size = 55  # стандартний фіксований розмір
+        self.spacing = 5     # відстань між клітинками
+
         self.create_ui()
 
     def generate_symbols(self):
-        symbols = list("ABCDEFGHIJKLMNÑOPQRSTUVWXYZ")  # Поки просто символи
-        needed = self.total_pairs
-        chosen = random.sample(symbols, needed)
-        grid_symbols = chosen * 2
-        random.shuffle(grid_symbols)
-        return grid_symbols
+        symbols = list("ABCDEFGHIJKLMNÑOPQRSTUVWXYZ")
+        chosen = random.sample(symbols, self.total_pairs)
+        items = chosen * 2
+        random.shuffle(items)
+        return items
 
     def create_ui(self):
-        bg_color = self.master.cget("bg")
-        fg_color = "black"
-        self.frame = tk.Frame(self.master, bg=bg_color)
-        self.frame.pack()
+        self.canvas = tk.Canvas(
+            self.master,
+            width=self.window_width,
+            height=self.window_height,
+            bg="white",
+            highlightthickness=0
+        )
+        self.canvas.pack()
+
+        # Обчислення сітки
+        grid_width = self.size * self.cell_size + (self.size - 1) * self.spacing
+        grid_height = self.size * self.cell_size + (self.size - 1) * self.spacing
+        offset_x = (self.window_width - grid_width) // 2
+        offset_y = ((self.window_height - 60) - grid_height) // 2  # 60 пікселів під кнопку
 
         for i in range(self.size):
-            row = []
             for j in range(self.size):
                 index = i * self.size + j
-                btn = tk.Button(
-                    self.frame,
-                    text="",
-                    width=6,
-                    height=3,
-                    command=lambda idx=index: self.reveal(idx),
-                    fg=fg_color,
-                    activebackground=bg_color)
-                btn.grid(row=i, column=j, padx=2, pady=2)
-                row.append(btn)
-            self.buttons.append(row)
+                x1 = offset_x + j * (self.cell_size + self.spacing)
+                y1 = offset_y + i * (self.cell_size + self.spacing)
+                x2 = x1 + self.cell_size
+                y2 = y1 + self.cell_size
 
-        self.back_button = tk.Button(
-            self.master,
-            text="Назад",
-            command=self.back
-        )
-        self.back_button.pack(pady=10)
+                rect = self.canvas.create_rectangle(x1, y1, x2, y2, fill="lightgray", outline="black")
+                text = self.canvas.create_text((x1 + x2) / 2, (y1 + y2) / 2, text="", font=("Arial", 18))
+
+                self.canvas.tag_bind(rect, "<Button-1>", lambda event, idx=index: self.reveal(idx))
+                self.canvas.tag_bind(text, "<Button-1>", lambda event, idx=index: self.reveal(idx))
+
+                self.canvas_items[index] = {
+                    "rect": rect,
+                    "text": text,
+                    "revealed": False
+                }
+
+        self.back_button = tk.Button(self.master, text="Назад", command=self.back)
+        self.back_button.pack(pady=5)
 
     def reveal(self, index):
-        if self.locked:
+        if self.locked or self.canvas_items[index]["revealed"]:
             return
 
-        row, col = divmod(index, self.size)
-        btn = self.buttons[row][col]
-
-        if btn["text"] != "":
-            return  # кнопка вже відкрита
-
         self.click_count += 1
-        symbol = self.symbols[index]
-        btn.config(text=symbol)
+        self.canvas_items[index]["revealed"] = True
+        self.canvas.itemconfigure(self.canvas_items[index]["text"], text=self.symbols[index])
 
         if self.first is None:
-            self.first = (index, btn)
+            self.first = index
         elif self.second is None:
-            self.second = (index, btn)
+            self.second = index
             self.locked = True
-            self.master.after(500, self.check_match)  # Через 0.5 сек перевірити
-
-    def show_victory_screen(self):
-        self.frame.destroy()
-        if hasattr(self, 'back_button'):  # Знищує кнопку Назад, якщо вона існує
-            self.back_button.destroy()
-        self.victory_frame = tk.Frame(self.master)
-        self.victory_frame.pack()
-        current_time = int(time.time() - self.timer)
-        tk.Label(self.victory_frame, text="Всі пари знайдено!", font=("Arial", 18)).pack(pady=20)
-        tk.Label(self.victory_frame, text=f"Загальна кількість ходів: {int(self.click_count/2)}", font=("Arial", 14)).pack(pady=5) # Можна змінити на к-сть натискань
-        tk.Label(self.victory_frame, text=f"Час проходження: {current_time} с", font=("Arial", 14)).pack(pady=10)
-        tk.Button(self.victory_frame, text="Меню", command=self.back).pack(pady=10)
+            self.master.after(500, self.check_match)
 
     def check_match(self):
-        idx1, btn1 = self.first
-        idx2, btn2 = self.second
+        idx1 = self.first
+        idx2 = self.second
 
         if self.symbols[idx1] == self.symbols[idx2]:
-            btn1.config(state="disabled")
-            btn2.config(state="disabled")
+            self.canvas.itemconfigure(self.canvas_items[idx1]["rect"], fill="green")
+            self.canvas.itemconfigure(self.canvas_items[idx2]["rect"], fill="green")
             self.matches_found += 1
             if self.matches_found == self.total_pairs:
                 self.show_victory_screen()
         else:
-            btn1.config(text="")
-            btn2.config(text="")
+            self.canvas.itemconfigure(self.canvas_items[idx1]["text"], text="")
+            self.canvas.itemconfigure(self.canvas_items[idx2]["text"], text="")
+            self.canvas_items[idx1]["revealed"] = False
+            self.canvas_items[idx2]["revealed"] = False
 
         self.first = None
         self.second = None
-        self.locked = False  # Дозволити натискання після перевірки
+        self.locked = False
+
+    def show_victory_screen(self):
+        self.canvas.destroy()
+        self.back_button.destroy()
+        elapsed = int(time.time() - self.timer)
+
+        self.victory_frame = tk.Frame(self.master)
+        self.victory_frame.pack()
+
+        tk.Label(self.victory_frame, text="Всі пари знайдено!", font=("Arial", 18)).pack(pady=20)
+        tk.Label(self.victory_frame, text=f"Ходи: {self.click_count // 2}", font=("Arial", 14)).pack(pady=5)
+        tk.Label(self.victory_frame, text=f"Час: {elapsed} с", font=("Arial", 14)).pack(pady=10)
+        tk.Button(self.victory_frame, text="Меню", command=self.back).pack(pady=10)
 
     def back(self):
-        if hasattr(self, 'frame'):
-            self.frame.destroy()
+        if hasattr(self, 'canvas'):
+            self.canvas.destroy()
         if hasattr(self, 'victory_frame'):
             self.victory_frame.destroy()
         if hasattr(self, 'back_button'):
             self.back_button.destroy()
-
         if self.on_back:
             self.on_back()
