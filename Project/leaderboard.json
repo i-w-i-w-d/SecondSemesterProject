@@ -1,0 +1,62 @@
+{
+  "easy": [
+    {
+      "name": "Гравець",
+      "moves": 2,
+      "time": 1
+    },
+    {
+      "name": "Гравець",
+      "moves": 2,
+      "time": 1
+    },
+    {
+      "name": "Гравець",
+      "moves": 2,
+      "time": 1
+    },
+    {
+      "name": "Гравець",
+      "moves": 2,
+      "time": 2
+    },
+    {
+      "name": "віфа",
+      "moves": 3,
+      "time": 2
+    },
+    {
+      "name": "Гравець",
+      "moves": 3,
+      "time": 2
+    },
+    {
+      "name": "Гравець",
+      "moves": 3,
+      "time": 2
+    },
+    {
+      "name": "Гравець",
+      "moves": 3,
+      "time": 3
+    },
+    {
+      "name": "аіфв",
+      "moves": 4,
+      "time": 3
+    },
+    {
+      "name": "Гравець",
+      "moves": 4,
+      "time": 3
+    }
+  ],
+  "medium": [
+    {
+      "name": "Гравець",
+      "moves": 13,
+      "time": 14
+    }
+  ],
+  "hard": []
+}

@@ -1,55 +1,56 @@
 class TextResources:
     def __init__(self):
-        self.texts = {
+        self.texts = self.load_texts()
+
+    def load_texts(self):
+        return {
             "uk": {
                 "menu": "Меню",
-                "start": "Почати гру",
+                "start": "Старт",
                 "settings": "Налаштування",
-                "leaders": "Лідери",
-                "exit": "Вийти",
-                "game_title": "Гра - Запам'ятовування",
-                "choose_level": "Оберіть рівень складності:",
-                "easy": "Легкий",
-                "medium": "Середній",
-                "hard": "Складний",
-                "back": "Повернутись",
-                "leaders_title": "Таблиця лідерів",
-                "leaders_text": "Найкращі результати",
-                "no_results": "Ще немає результатів",
+                "leaders": "Таблиця лідерів",
+                "exit": "Вихід",
+                "game_title": "Гра",
+                "easy": "Легко",
+                "medium": "Середньо",
+                "hard": "Важко",
+                "back": "Назад",
                 "settings_title": "Налаштування",
-                "choose_theme": "Оберіть тему вікна:",
-                "light_theme": "Світла тема",
-                "gray_theme": "Сіра тема",
-                "choose_lang": "Оберіть мову:",
+                "choose_theme": "Оберіть тему",
+                "light_theme": "Світла",
+                "gray_theme": "Сіра",
+                "choose_lang": "Оберіть мову",
                 "uk_lang": "Українська",
                 "en_lang": "Англійська",
-                "level_msg": "Ви обрали {level} рівень складності"
+                "choose_mode": "Оберіть режим",
+                "letters_mode": "Букви",
+                "colors_mode": "Кольори",
+                "choose_level": "Оберіть рівень"
             },
             "en": {
                 "menu": "Menu",
-                "start": "Start Game",
+                "start": "Start",
                 "settings": "Settings",
-                "leaders": "Leaders",
+                "leaders": "Leaderboard",
                 "exit": "Exit",
-                "game_title": "Game - Memorization",
-                "choose_level": "Choose difficulty level:",
+                "game_title": "Game",
                 "easy": "Easy",
                 "medium": "Medium",
                 "hard": "Hard",
                 "back": "Back",
-                "leaders_title": "Leaderboard",
-                "leaders_text": "Top results",
-                "no_results": "No results yet",
                 "settings_title": "Settings",
-                "choose_theme": "Choose window theme:",
-                "light_theme": "Light theme",
-                "gray_theme": "Gray theme",
-                "choose_lang": "Choose language:",
+                "choose_theme": "Choose theme",
+                "light_theme": "Light",
+                "gray_theme": "Gray",
+                "choose_lang": "Choose language",
                 "uk_lang": "Ukrainian",
                 "en_lang": "English",
-                "level_msg": "You selected {level} difficulty level"
+                "choose_mode": "Choose mode",
+                "letters_mode": "Letters",
+                "colors_mode": "Colors",
+                "choose_level": "Choose level"
             }
         }
 
     def get_text(self, language, key):
-        return self.texts[language][key]
+        return self.texts[language].get(key, f"[{key}]")
