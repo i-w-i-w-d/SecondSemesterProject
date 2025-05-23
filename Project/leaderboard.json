@@ -58,5 +58,11 @@
       "time": 14
     }
   ],
-  "hard": []
+  "hard": [
+    {
+      "name": "Yra",
+      "moves": 75,
+      "time": 110
+    }
+  ]
 }

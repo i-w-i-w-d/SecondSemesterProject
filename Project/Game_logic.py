@@ -38,10 +38,11 @@ class GameLogic:
             chosen = random.sample(symbols, self.total_pairs)
             items = chosen * 2
         elif self.mode == "colors":
-            # Поки кольори лише для легкого рівня (2x2)
-            if self.size != 2:
-                raise ValueError("Режим 'colors' підтримується лише для розміру 2x2")
-            items = list(range(1, self.total_pairs + 1)) * 2
+            available = list(range(1, 20))
+            if self.total_pairs > len(available):
+                raise ValueError("Недостатньо зображень!")
+            chosen = random.sample(available, self.total_pairs)
+            items = chosen * 2
 
         random.shuffle(items)
         return items
