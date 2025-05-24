@@ -91,14 +91,15 @@ class GameWindow(BaseWindow):
     def start_easy_level(self):
         self.clear_window()
         self.master.title(f"{self.get_text('game_title')} - {self.get_text('easy')}")
-        GameLogic(self.master, size=2, mode=self.mode_var.get(), on_back=self.on_back)
+        GameLogic(self.master, size=2, mode=self.mode_var.get(), on_back=self.on_back, language=self.language)
+
 
     def start_medium_level(self):
         self.clear_window()
         self.master.title(f"{self.get_text('game_title')} - {self.get_text('medium')}")
-        GameLogic(self.master, size=4, mode=self.mode_var.get(), on_back=self.on_back)
+        GameLogic(self.master, size=4, mode=self.mode_var.get(), on_back=self.on_back, language=self.language)
 
     def start_hard_level(self):
         self.clear_window()
         self.master.title(f"{self.get_text('game_title')} - {self.get_text('hard')}")
-        GameLogic(self.master, size=6, mode=self.mode_var.get(), on_back=self.on_back)
+        GameLogic(self.master, size=6, mode=self.mode_var.get(), on_back=self.on_back, language=self.language)

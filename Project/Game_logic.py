@@ -6,11 +6,12 @@ from LeaderboardManager import LeaderboardManager
 import os
 
 class GameLogic:
-    def __init__(self, master, size, mode="letters", on_back=None):
+    def __init__(self, master, size, language, mode="letters", on_back=None):
         self.master = master
         self.size = size
         self.mode = mode
         self.on_back = on_back
+        self.language = language
         self.canvas_items = {}
         self.first = None
         self.second = None
@@ -21,8 +22,6 @@ class GameLogic:
         self.click_count = 0
         self.timer = time.time()
         self.leaderboard_manager = LeaderboardManager()
-
-        # Фіксовані параметри
         self.window_width = 550
         self.window_height = 450
         self.cell_size = 55
@@ -34,7 +33,10 @@ class GameLogic:
 
     def generate_symbols(self):
         if self.mode == "letters":
-            symbols = list("ABCDEFGHIJKLMNÑOPQRSTUVWXYZ")
+            if self.language == "en":
+                symbols = list("ABCDEFGHIJKLMNÑOPQRSTUVWXYZ")
+            else:
+                symbols = list("АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦ")
             chosen = random.sample(symbols, self.total_pairs)
             items = chosen * 2
         elif self.mode == "colors":
