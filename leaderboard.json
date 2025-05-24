@@ -1,68 +1,33 @@
 {
   "easy": [
     {
-      "name": "Гравець",
-      "moves": 2,
-      "time": 1
-    },
-    {
-      "name": "Гравець",
-      "moves": 2,
-      "time": 1
-    },
-    {
-      "name": "Гравець",
-      "moves": 2,
-      "time": 1
-    },
-    {
-      "name": "Гравець",
+      "name": "iwiwd",
       "moves": 2,
       "time": 2
     },
     {
-      "name": "віфа",
-      "moves": 3,
-      "time": 2
+      "name": "andriy",
+      "moves": 2,
+      "time": 9
     },
     {
-      "name": "Гравець",
-      "moves": 3,
-      "time": 2
-    },
-    {
-      "name": "Гравець",
-      "moves": 3,
-      "time": 2
-    },
-    {
-      "name": "Гравець",
-      "moves": 3,
-      "time": 3
-    },
-    {
-      "name": "аіфв",
+      "name": "Tecт і_тест 69",
       "moves": 4,
-      "time": 3
-    },
-    {
-      "name": "Гравець",
-      "moves": 4,
-      "time": 3
+      "time": 5
     }
   ],
   "medium": [
     {
-      "name": "Гравець",
-      "moves": 13,
-      "time": 14
+      "name": "iwiwd",
+      "moves": 21,
+      "time": 31
     }
   ],
   "hard": [
     {
-      "name": "Yra",
-      "moves": 75,
-      "time": 110
+      "name": "iwiwd",
+      "moves": 56,
+      "time": 90
     }
   ]
 }
