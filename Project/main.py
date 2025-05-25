@@ -11,7 +11,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
 class TheGame:
-    def __init__(self, title="Меню", width=550, height=500):
+    def __init__(self, title="Меню", width=550, height=450):
         self.window = tk.Tk()
         self.window.title(title)
         self.window.geometry(f'{width}x{height}')

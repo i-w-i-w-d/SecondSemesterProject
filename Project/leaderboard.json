@@ -1,6 +1,21 @@
 {
   "easy": [
     {
+      "name": "53242534",
+      "moves": 2,
+      "time": 2
+    },
+    {
+      "name": "1243",
+      "moves": 2,
+      "time": 2
+    },
+    {
+      "name": "4132",
+      "moves": 2,
+      "time": 2
+    },
+    {
       "name": "4",
       "moves": 2,
       "time": 3
@@ -11,6 +26,21 @@
       "time": 4
     },
     {
+      "name": "412",
+      "moves": 3,
+      "time": 3
+    },
+    {
+      "name": "4253",
+      "moves": 3,
+      "time": 3
+    },
+    {
+      "name": "143",
+      "moves": 3,
+      "time": 3
+    },
+    {
       "name": "2",
       "moves": 3,
       "time": 4
@@ -19,21 +49,6 @@
       "name": "gg",
       "moves": 3,
       "time": 4
-    },
-    {
-      "name": "1",
-      "moves": 3,
-      "time": 5
-    },
-    {
-      "name": "5",
-      "moves": 3,
-      "time": 5
-    },
-    {
-      "name": "iwiwd",
-      "moves": 3,
-      "time": 5
     }
   ],
   "medium": [

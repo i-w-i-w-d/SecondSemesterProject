@@ -15,74 +15,46 @@ class SettingsWindow(BaseWindow):
 
         colors = self.theme_manager.get_theme_colors()
 
-        tk.Label(
-            self.master,
-            text=self.get_text("choose_theme"),
-            bg=colors["bg"],
-            fg=colors["fg"]
-        ).pack(pady=10)
+        container = tk.Frame(self.master, bg=colors["bg"])
+        container.place(relx=0.5, rely=0.5, anchor="center")
+
+        tk.Label(container, text=self.get_text("choose_theme"),
+                 bg=colors["bg"], fg=colors["fg"]).pack(pady=10)
 
         self.theme_var = tk.StringVar(value=self.theme_manager.current_theme)
 
-        tk.Radiobutton(
-            self.master,
-            text=self.get_text("light_theme"),
-            variable=self.theme_var,
-            value="light",
-            command=self.change_theme,
-            bg=colors["bg"],
-            fg=colors["fg"],
-            selectcolor=colors["selectcolor"]
-        ).pack()
+        tk.Radiobutton(container, text=self.get_text("light_theme"),
+                       variable=self.theme_var, value="light",
+                       command=self.change_theme,
+                       bg=colors["bg"], fg=colors["fg"],
+                       selectcolor=colors["selectcolor"]).pack()
 
-        tk.Radiobutton(
-            self.master,
-            text=self.get_text("gray_theme"),
-            variable=self.theme_var,
-            value="gray",
-            command=self.change_theme,
-            bg=colors["bg"],
-            fg=colors["fg"],
-            selectcolor=colors["selectcolor"]
-        ).pack(pady=5)
+        tk.Radiobutton(container, text=self.get_text("gray_theme"),
+                       variable=self.theme_var, value="gray",
+                       command=self.change_theme,
+                       bg=colors["bg"], fg=colors["fg"],
+                       selectcolor=colors["selectcolor"]).pack(pady=5)
 
-        tk.Label(
-            self.master,
-            text=self.get_text("choose_lang"),
-            bg=colors["bg"],
-            fg=colors["fg"]
-        ).pack(pady=10)
+        tk.Label(container, text=self.get_text("choose_lang"),
+                 bg=colors["bg"], fg=colors["fg"]).pack(pady=10)
 
         self.lang_var = tk.StringVar(value=self.language)
 
-        tk.Radiobutton(
-            self.master,
-            text=self.get_text("uk_lang"),
-            variable=self.lang_var,
-            value="uk",
-            command=self.change_language,
-            bg=colors["bg"],
-            fg=colors["fg"],
-            selectcolor=colors["selectcolor"]
-        ).pack()
+        tk.Radiobutton(container, text=self.get_text("uk_lang"),
+                       variable=self.lang_var, value="uk",
+                       command=self.change_language,
+                       bg=colors["bg"], fg=colors["fg"],
+                       selectcolor=colors["selectcolor"]).pack()
 
-        tk.Radiobutton(
-            self.master,
-            text=self.get_text("en_lang"),
-            variable=self.lang_var,
-            value="en",
-            command=self.change_language,
-            bg=colors["bg"],
-            fg=colors["fg"],
-            selectcolor=colors["selectcolor"]
-        ).pack(pady=5)
+        tk.Radiobutton(container, text=self.get_text("en_lang"),
+                       variable=self.lang_var, value="en",
+                       command=self.change_language,
+                       bg=colors["bg"], fg=colors["fg"],
+                       selectcolor=colors["selectcolor"]).pack(pady=5)
 
-        tk.Button(
-            self.master,
-            text=self.get_text("back"),
-            command=self.on_back,
-            bg=colors["btn_bg"]
-        ).pack(pady=20)
+        tk.Button(container, text=self.get_text("back"),
+                  command=self.on_back,
+                  bg=colors["btn_bg"]).pack(pady=20)
 
     def change_theme(self):
         self.theme_manager.current_theme = self.theme_var.get()

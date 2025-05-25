@@ -7,7 +7,7 @@ class ThemeManager:
     def get_theme_colors(self):
         if self.current_theme == "light":
             return {
-                "bg": "#ffffff",
+                "bg": "pink",
                 "bg_image": self.day_image,
                 "fg": "black",
                 "btn_bg": "pink",

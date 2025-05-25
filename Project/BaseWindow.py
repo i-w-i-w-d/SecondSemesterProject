@@ -13,7 +13,7 @@ class BaseWindow:
 
     def clear_window(self):
         for widget in self.master.winfo_children():
-            if widget != self.bg_label:  # Не видаляємо фон
+            if widget != self.bg_label:
                 widget.destroy()
 
     def get_text(self, key):

@@ -16,29 +16,32 @@ class MainMenuWindow(BaseWindow):
 
         colors = self.theme_manager.get_theme_colors()
 
+        container = tk.Frame(self.master, bg=colors["bg"])
+        container.place(relx=0.5, rely=0.5, anchor="center")
+
         tk.Button(
-            self.master,
+            container,
             text=self.get_text("start"),
             command=self.on_start,
             bg=colors["btn_bg"]
         ).pack(pady=10)
 
         tk.Button(
-            self.master,
+            container,
             text=self.get_text("settings"),
             command=self.on_settings,
             bg=colors["btn_bg"]
-        ).pack(pady=10)
+        ).pack(pady=15)
 
         tk.Button(
-            self.master,
+            container,
             text=self.get_text("leaders"),
             command=self.on_leaders,
             bg=colors["btn_bg"]
         ).pack(pady=10)
 
         tk.Button(
-            self.master,
+            container,
             text=self.get_text("exit"),
             command=self.on_exit,
             bg=colors["btn_bg"]

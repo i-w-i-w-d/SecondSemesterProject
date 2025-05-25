@@ -3,6 +3,7 @@ import random
 import time
 from PIL import Image, ImageTk
 from LeaderboardManager import LeaderboardManager
+from ThemeManager import ThemeManager
 import os
 
 class GameLogic:
@@ -51,14 +52,23 @@ class GameLogic:
         return items
 
     def create_ui(self):
+        theme = ThemeManager().get_theme_colors()
+
         self.canvas = tk.Canvas(
             self.master,
             width=self.window_width,
             height=self.window_height,
-            bg="white",
+            bg=theme["bg"],  # тепер фон з теми
             highlightthickness=0
         )
         self.canvas.pack()
+
+        try:
+            bg_img = Image.open(theme["bg_image"]).resize((self.window_width, self.window_height))
+            self.bg_photo = ImageTk.PhotoImage(bg_img)
+            self.canvas.create_image(0, 0, anchor="nw", image=self.bg_photo)
+        except Exception as e:
+            print("Не вдалося завантажити фон:", e)
 
         # Обчислення сітки
         grid_width = self.size * self.cell_size + (self.size - 1) * self.spacing
@@ -160,19 +170,41 @@ class GameLogic:
         self.locked = False
 
     def show_victory_screen(self):
-        self.canvas.destroy()
-        self.back_button.destroy()
+        theme = ThemeManager().get_theme_colors()
+
+        if hasattr(self, 'canvas'):
+            self.canvas.destroy()
+        if hasattr(self, 'back_button'):
+            self.back_button.destroy()
+
         elapsed = int(time.time() - self.timer)
         moves = self.click_count // 2
 
-        self.victory_frame = tk.Frame(self.master)
-        self.victory_frame.pack()
+        self.victory_canvas = tk.Canvas(
+            self.master,
+            width=self.window_width,
+            height=self.window_height,
+            bg=theme["bg"],
+            highlightthickness=0
+        )
+        self.victory_canvas.pack()
 
-        tk.Label(self.victory_frame, text=self.get_text("pairs_found"), font=("Arial", 18)).pack(pady=20)
-        tk.Label(self.victory_frame, text=f"{self.get_text('moves')}: {moves}", font=("Arial", 14)).pack(pady=5)
+
+        bg_img = Image.open(theme["bg_image"]).resize((self.window_width, self.window_height))
+        self.victory_bg_photo = ImageTk.PhotoImage(bg_img)
+        self.victory_canvas.create_image(0, 0, anchor="nw", image=self.victory_bg_photo)
+
+
+        self.victory_frame = tk.Frame(self.master, bg=theme["bg"])
+        self.victory_frame.place(relx=0.5, rely=0.5, anchor="center")
+
+        tk.Label(self.victory_frame, text=self.get_text("pairs_found"), font=("Arial", 18), bg=theme["bg"],
+                 fg=theme["fg"]).pack(pady=20)
+        tk.Label(self.victory_frame, text=f"{self.get_text('moves')}: {moves}", font=("Arial", 14), bg=theme["bg"],
+                 fg=theme["fg"]).pack(pady=5)
         tk.Label(self.victory_frame, text=f"{self.get_text('time')}: {elapsed} {self.get_text('time_unit')}",
-                 font=("Arial", 14)).pack(pady=10)
-        tk.Label(self.victory_frame, text=self.get_text("enter_name")).pack()
+                 font=("Arial", 14), bg=theme["bg"], fg=theme["fg"]).pack(pady=10)
+        tk.Label(self.victory_frame, text=self.get_text("enter_name"), bg=theme["bg"], fg=theme["fg"]).pack()
 
         self.name_entry = tk.Entry(self.victory_frame)
         self.name_entry.pack()
@@ -180,11 +212,11 @@ class GameLogic:
         tk.Button(
             self.victory_frame,
             text=self.get_text("save_score"),
-            command=lambda: self.save_score(moves, elapsed)
+            command=lambda: self.save_score(moves, elapsed),
+            bg=theme["btn_bg"]
         ).pack(pady=5)
 
-        tk.Button(self.victory_frame, text=self.get_text("menu"), command=self.back).pack(pady=10)
-
+        tk.Button(self.victory_frame, text=self.get_text("menu"), command=self.back, bg=theme["btn_bg"]).pack(pady=10)
     def save_score(self, moves, time_seconds):
         player_name = self.name_entry.get() or "Гравець"
         level = self.get_level_name()
@@ -199,19 +231,37 @@ class GameLogic:
         return "hard"
 
     def show_leaderboard(self):
+        theme = ThemeManager().get_theme_colors()
+
         for widget in self.victory_frame.winfo_children():
             widget.destroy()
 
         level = self.get_level_name()
         top_results = self.leaderboard_manager.get_top_results(level)
 
-        tk.Label(self.victory_frame, text=self.get_text("top_players"), font=("Arial", 16)).pack()
+        tk.Label(
+            self.victory_frame,
+            text=self.get_text("top_players"),
+            font=("Arial", 16),
+            bg=theme["bg"],
+            fg=theme["fg"]
+        ).pack(pady=10)
 
         for i, result in enumerate(top_results, 1):
             text = f"{i}. {result['name']} - {result['moves']} {self.get_text('moves_unit')}, {result['time']} {self.get_text('time_unit')}"
-            tk.Label(self.victory_frame, text=text).pack()
+            tk.Label(
+                self.victory_frame,
+                text=text,
+                bg=theme["bg"],
+                fg=theme["fg"]
+            ).pack()
 
-        tk.Button(self.victory_frame, text=self.get_text("menu"), command=self.back).pack(pady=10)
+        tk.Button(
+            self.victory_frame,
+            text=self.get_text("menu"),
+            command=self.back,
+            bg=theme["btn_bg"]
+        ).pack(pady=10)
 
     def get_text(self, key):
         if self.text_resources is not None:
