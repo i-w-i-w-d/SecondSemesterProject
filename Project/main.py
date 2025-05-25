@@ -6,9 +6,12 @@ from MainMenuWindow import MainMenuWindow
 from GameWindow import GameWindow
 from LeadersWindow import LeadersWindow
 from SettingsWindow import SettingsWindow
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 
 class TheGame:
-    def __init__(self, title="Меню", width=550, height=450):
+    def __init__(self, title="Меню", width=550, height=500):
         self.window = tk.Tk()
         self.window.title(title)
         self.window.geometry(f'{width}x{height}')
@@ -16,7 +19,12 @@ class TheGame:
         self.theme_manager = ThemeManager()
         self.current_language = "uk"
         self.current_window = None
+        self.window.bind("<Configure>", self.on_window_resize)
         self.show_main_menu()
+
+    def on_window_resize(self, event):
+        if hasattr(self, 'current_window') and self.current_window:
+            self.current_window.apply_theme()
 
     def show_main_menu(self):
         self.current_window = MainMenuWindow(

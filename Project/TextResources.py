@@ -23,7 +23,19 @@ class TextResources:
                 "choose_lang": "Оберіть мову:",
                 "uk_lang": "Українська",
                 "en_lang": "Англійська",
-                "level_msg": "Ви обрали {level} рівень складності"
+                "level_msg": "Ви обрали {level} рівень складності",
+                "choose_mode": "Оберіть режим",
+                "letters_mode": "Букви",
+                "colors_mode": "Кольори",
+                "victory": "Перемога!",
+                "moves": "Ходи",
+                "time": "Час",
+                "enter_name": "Введіть ваше ім'я:",
+                "save_score": "Зберегти результат",
+                "top_players": "Топ гравців:",
+                "pairs_found": "Всі пари знайдено!",
+                "moves_unit": "ходів",
+                "time_unit": "с"
             },
             "en": {
                 "menu": "Menu",
@@ -47,7 +59,19 @@ class TextResources:
                 "choose_lang": "Choose language:",
                 "uk_lang": "Ukrainian",
                 "en_lang": "English",
-                "level_msg": "You selected {level} difficulty level"
+                "level_msg": "You selected {level} difficulty level",
+                "choose_mode": "Choose mode",
+                "letters_mode": "Letters",
+                "colors_mode": "Colors",
+                "victory": "Victory!",
+                "moves": "Moves",
+                "time": "Time",
+                "enter_name": "Enter your name:",
+                "save_score": "Save score",
+                "top_players": "Top players:",
+                "pairs_found": "All pairs found!",
+                "moves_unit": "moves",
+                "time_unit": "s"
             }
         }
 

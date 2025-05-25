@@ -1,0 +1,52 @@
+{
+  "easy": [
+    {
+      "name": "4",
+      "moves": 2,
+      "time": 3
+    },
+    {
+      "name": "q",
+      "moves": 2,
+      "time": 4
+    },
+    {
+      "name": "2",
+      "moves": 3,
+      "time": 4
+    },
+    {
+      "name": "gg",
+      "moves": 3,
+      "time": 4
+    },
+    {
+      "name": "1",
+      "moves": 3,
+      "time": 5
+    },
+    {
+      "name": "5",
+      "moves": 3,
+      "time": 5
+    },
+    {
+      "name": "iwiwd",
+      "moves": 3,
+      "time": 5
+    }
+  ],
+  "medium": [
+    {
+      "name": "1",
+      "moves": 14,
+      "time": 24
+    },
+    {
+      "name": "tested",
+      "moves": 18,
+      "time": 34
+    }
+  ],
+  "hard": []
+}
