@@ -15,6 +15,7 @@ class TheGame:
         self.window = tk.Tk()
         self.window.title(title)
         self.window.geometry(f'{width}x{height}')
+        self.window.resizable(False, False)
         self.text_resources = TextResources()
         self.theme_manager = ThemeManager()
         self.current_language = "uk"
