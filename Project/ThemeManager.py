@@ -17,7 +17,7 @@ class ThemeManager:
             return {
                 "bg": "#333333",
                 "bg_image": self.night_image,
-                "fg": "white",
+                "fg": "black",
                 "btn_bg": "pink",
                 "selectcolor": "gray"
             }

@@ -107,7 +107,7 @@ class GameLogic:
             self.master,
             text=self.get_text("back"),
             command=self.back,
-            bg="lightgray"
+            bg="Black"
         )
         self.back_button.pack(pady=5)
 
@@ -124,7 +124,7 @@ class GameLogic:
 
         if self.mode == "letters":
             self.canvas.itemconfigure(self.canvas_items[index]["text"], text=self.symbols[index])
-        else:  # кольори
+        else:
             image_index = self.symbols[index]
             image_path = os.path.join("assets", f"c{image_index}.png")
             if image_path not in self.images:
@@ -262,7 +262,8 @@ class GameLogic:
             self.victory_frame,
             text=self.get_text("menu"),
             command=self.back,
-            bg=["btn_bg"]
+            bg=theme["btn_bg"]
+
         ).pack(pady=10)
 
     def get_text(self, key):

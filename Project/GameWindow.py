@@ -76,14 +76,15 @@ class GameWindow(BaseWindow):
             text=self.get_text("hard"),
             command=self.start_hard_level,
             width=10,
-            bg=colors["btn_bg"]
+            bg=colors["btn_bg"],
         ).pack(side=tk.LEFT, padx=5)
 
         tk.Button(
             self.master,
             text=self.get_text("back"),
             command=self.on_back,
-            bg=colors["btn_bg"]
+            bg=colors["btn_bg"],
+            fg=colors.get("back_btn_fg", "black")
         ).pack(pady=20)
 
     def start_easy_level(self):

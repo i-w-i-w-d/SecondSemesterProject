@@ -6,6 +6,11 @@
       "time": 3
     },
     {
+      "name": "2",
+      "moves": 2,
+      "time": 3
+    },
+    {
       "name": "кукввів",
       "moves": 3,
       "time": 4
@@ -17,6 +22,21 @@
     },
     {
       "name": "qwe",
+      "moves": 3,
+      "time": 5
+    },
+    {
+      "name": "lalala",
+      "moves": 3,
+      "time": 5
+    },
+    {
+      "name": "1уц",
+      "moves": 3,
+      "time": 5
+    },
+    {
+      "name": "йц",
       "moves": 3,
       "time": 5
     },
