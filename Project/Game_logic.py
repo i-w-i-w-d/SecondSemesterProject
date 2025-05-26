@@ -7,7 +7,7 @@ from ThemeManager import ThemeManager
 import os
 
 class GameLogic:
-    def __init__(self, master, size, language, mode="letters", on_back=None, text_resources=None):
+    def __init__(self, master, size, language, mode="letters", on_back=None, text_resources=None, theme_manager = None):
         self.master = master
         self.size = size
         self.mode = mode
@@ -31,6 +31,7 @@ class GameLogic:
 
         self.images = {}
 
+        self.theme_manager = theme_manager
         self.create_ui()
 
     def generate_symbols(self):
@@ -52,7 +53,7 @@ class GameLogic:
         return items
 
     def create_ui(self):
-        theme = ThemeManager().get_theme_colors()
+        theme = self.theme_manager.get_theme_colors()
 
         self.canvas = tk.Canvas(
             self.master,
@@ -170,7 +171,7 @@ class GameLogic:
         self.locked = False
 
     def show_victory_screen(self):
-        theme = ThemeManager().get_theme_colors()
+        theme = self.theme_manager.get_theme_colors()
 
         if hasattr(self, 'canvas'):
             self.canvas.destroy()
@@ -231,7 +232,7 @@ class GameLogic:
         return "hard"
 
     def show_leaderboard(self):
-        theme = ThemeManager().get_theme_colors()
+        theme = self.theme_manager.get_theme_colors()
 
         for widget in self.victory_frame.winfo_children():
             widget.destroy()
@@ -261,7 +262,7 @@ class GameLogic:
             self.victory_frame,
             text=self.get_text("menu"),
             command=self.back,
-            bg=theme["btn_bg"]
+            bg=["btn_bg"]
         ).pack(pady=10)
 
     def get_text(self, key):

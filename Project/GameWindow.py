@@ -96,7 +96,8 @@ class GameWindow(BaseWindow):
             mode=self.mode_var.get(),
             on_back=self.on_back,
             language=self.language,
-            text_resources=self.text_resources
+            text_resources=self.text_resources,
+            theme_manager=self.theme_manager
         )
 
     def start_medium_level(self):
@@ -109,7 +110,8 @@ class GameWindow(BaseWindow):
             mode=self.mode_var.get(),
             on_back=self.on_back,
             language=self.language,
-            text_resources=self.text_resources
+            text_resources=self.text_resources,
+            theme_manager=self.theme_manager
         )
 
     def start_hard_level(self):
@@ -122,5 +124,6 @@ class GameWindow(BaseWindow):
             mode=self.mode_var.get(),
             on_back=self.on_back,
             language=self.language,
-            text_resources=self.text_resources
+            text_resources=self.text_resources,
+            theme_manager=self.theme_manager
         )
