@@ -248,7 +248,8 @@ class GameLogic:
         ).pack(pady=10)
 
         for i, result in enumerate(top_results, 1):
-            text = f"{i}. {result['name']} - {result['moves']} {self.get_text('moves_unit')}, {result['time']} {self.get_text('time_unit')}"
+            text = (f"{i}. {result['name']} - {result['moves']} {self.get_text('moves_unit')}, "
+                    f"{result['time']} {self.get_text('time_unit')}")
             tk.Label(
                 self.victory_frame,
                 text=text,
