@@ -1,66 +1,46 @@
 {
   "easy": [
     {
-      "name": "53242534",
-      "moves": 2,
-      "time": 2
-    },
-    {
-      "name": "1243",
-      "moves": 2,
-      "time": 2
-    },
-    {
-      "name": "4132",
-      "moves": 2,
-      "time": 2
-    },
-    {
-      "name": "4",
+      "name": "3-ій рівень дуже скл",
       "moves": 2,
       "time": 3
     },
     {
-      "name": "q",
-      "moves": 2,
-      "time": 4
-    },
-    {
-      "name": "412",
-      "moves": 3,
-      "time": 3
-    },
-    {
-      "name": "4253",
-      "moves": 3,
-      "time": 3
-    },
-    {
-      "name": "143",
-      "moves": 3,
-      "time": 3
-    },
-    {
-      "name": "2",
+      "name": "кукввів",
       "moves": 3,
       "time": 4
     },
     {
-      "name": "gg",
+      "name": "ShowTest",
       "moves": 3,
-      "time": 4
+      "time": 5
+    },
+    {
+      "name": "qwe",
+      "moves": 3,
+      "time": 5
+    },
+    {
+      "name": "qweewq",
+      "moves": 3,
+      "time": 8
     }
   ],
   "medium": [
     {
-      "name": "1",
-      "moves": 14,
-      "time": 24
+      "name": "NewRecord x12",
+      "moves": 11,
+      "time": 19
     },
     {
-      "name": "tested",
-      "moves": 18,
-      "time": 34
+      "name": "iwiwd",
+      "moves": 13,
+      "time": 26
+    },
+    {
+      "name": "Test",
+      "moves": 14,
+      "time": 26
     }
   ],
   "hard": []

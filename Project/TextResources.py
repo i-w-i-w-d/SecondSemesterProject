@@ -35,7 +35,8 @@ class TextResources:
                 "top_players": "Топ гравців:",
                 "pairs_found": "Всі пари знайдено!",
                 "moves_unit": "ходів",
-                "time_unit": "с"
+                "time_unit": "с",
+                "save_back": "Зберегти та вийти"
             },
             "en": {
                 "menu": "Menu",
@@ -71,7 +72,8 @@ class TextResources:
                 "top_players": "Top players:",
                 "pairs_found": "All pairs found!",
                 "moves_unit": "moves",
-                "time_unit": "s"
+                "time_unit": "s",
+                "save_back": "Save and exit"
             }
         }
 

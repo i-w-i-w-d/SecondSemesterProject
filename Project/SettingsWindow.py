@@ -52,7 +52,7 @@ class SettingsWindow(BaseWindow):
                        bg=colors["bg"], fg=colors["fg"],
                        selectcolor=colors["selectcolor"]).pack(pady=5)
 
-        tk.Button(container, text=self.get_text("back"),
+        tk.Button(container, text=self.get_text("save_back"),
                   command=self.on_back,
                   bg=colors["btn_bg"]).pack(pady=20)
 
