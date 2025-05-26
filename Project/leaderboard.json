@@ -1,9 +1,9 @@
 {
   "easy": [
     {
-      "name": "3-ій рівень дуже скл",
-      "moves": 2,
-      "time": 3
+      "name": "iwiwd",
+      "moves": 1,
+      "time": 1
     },
     {
       "name": "2",
@@ -11,7 +11,22 @@
       "time": 3
     },
     {
+      "name": "gtrg",
+      "moves": 2,
+      "time": 3
+    },
+    {
       "name": "кукввів",
+      "moves": 3,
+      "time": 4
+    },
+    {
+      "name": "6w5456w4",
+      "moves": 3,
+      "time": 4
+    },
+    {
+      "name": "leele",
       "moves": 3,
       "time": 4
     },
@@ -34,23 +49,23 @@
       "name": "1уц",
       "moves": 3,
       "time": 5
-    },
-    {
-      "name": "йц",
-      "moves": 3,
-      "time": 5
-    },
-    {
-      "name": "qweewq",
-      "moves": 3,
-      "time": 8
     }
   ],
   "medium": [
     {
-      "name": "NewRecord x12",
-      "moves": 11,
-      "time": 19
+      "name": "iwiwd",
+      "moves": 1,
+      "time": 1
+    },
+    {
+      "name": "hhhhh",
+      "moves": 13,
+      "time": 24
+    },
+    {
+      "name": "bg",
+      "moves": 13,
+      "time": 25
     },
     {
       "name": "iwiwd",
@@ -61,7 +76,38 @@
       "name": "Test",
       "moves": 14,
       "time": 26
+    },
+    {
+      "name": "ljnlnln",
+      "moves": 14,
+      "time": 27
+    },
+    {
+      "name": "bb bb",
+      "moves": 14,
+      "time": 27
+    },
+    {
+      "name": "lll",
+      "moves": 15,
+      "time": 30
+    },
+    {
+      "name": "jlnln",
+      "moves": 16,
+      "time": 32
+    },
+    {
+      "name": "lnnjnjk",
+      "moves": 18,
+      "time": 31
     }
   ],
-  "hard": []
+  "hard": [
+    {
+      "name": "iwiwd",
+      "moves": 1,
+      "time": 1
+    }
+  ]
 }
